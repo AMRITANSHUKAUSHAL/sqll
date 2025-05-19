@@ -1,11 +1,11 @@
 <?php
-// Database connection here - centralized
+// Database connection
 $con = mysqli_connect("localhost", "root", "", "wipro_db");
 if (!$con) {
     die("Connection Failed: " . mysqli_connect_error());
 }
 
-// Handle form submission if coming from registration.php form
+// Handle form submission from registration.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['username'];
     $email = $_POST['email'];
@@ -27,11 +27,11 @@ $resp = mysqli_query($con, "SELECT * FROM students");
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User List & Registration</title>
+    <title>User List</title>
 </head>
 <body>
-    <h2>User List</h2>
 
+    <h2>User List</h2>
     <?php
     if (!empty($message)) {
         echo "<p><strong>$message</strong></p>";
@@ -58,15 +58,8 @@ $resp = mysqli_query($con, "SELECT * FROM students");
     mysqli_close($con);
     ?>
 
-    <hr>
-
-    <h2>Register New User</h2>
-    <form method="POST" action="">
-        Name: <input type="text" name="username" required><br><br>
-        Email: <input type="email" name="email" required><br><br>
-        Password: <input type="password" name="password" required><br><br>
-        <input type="submit" value="Register">
-    </form>
+    <br><br>
+    <a href="registration.php">Register New User</a>
 
 </body>
 </html>
